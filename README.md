@@ -8,7 +8,10 @@
 
 **Any field of study or area of personal interest can benefit greatly from the enormous amount of data on the Internet.” Given the volume, variety, velocity, and veracity of Big Data available on the Web, collection and organization of this data can hardly be done manually by individual researchers or even large research teams. Because of that, researchers often resort to various technologies and tools to automate some aspects of data collection and organization” ( Krotov, V., & Silva, L. (2018).** 
 
-In general, we refer Information gathering from the Internet as web scraping. Usually when we say web scrapping we typically mean an automated procedure. However, it's a good idea to conduct our own research and confirm that we are not infringing on any Terms of Service.
+Web scraping is used to collect large amounts of data from websites, fast. It can be used to extract information from a website, such as product names, prices, and reviews, and then save that information to a file or database. It can also be used to track changes to a website, such as changes to prices or product availability. Additionally, it can be used to automate tasks, such as logging into a website, filling out forms, and clicking buttons.
+
+In general, we refer Information gathering from the Internet as web scraping. Usually when we say web scrapping we typically mean an automated procedure. However, web scraping is not always legal, as some websites may have terms of service that prohibit scraping, or the website may have technical measures in place to prevent scraping. Therefore it is important to check a website's terms of service and to be respectful of the website's resources and servers when scraping or conduct our own research and confirm that we are not infringing on any Terms of Service.
+
 The Web has evolved naturally from a variety of sources. It incorporates a wide range of technologies, patterns, and personalities and is still expanding today.Therefore, the Internet now a days is a complicated mess. Due to this, a few difficulties arise when we opt for web scrapping:
 
 > ### Variety
