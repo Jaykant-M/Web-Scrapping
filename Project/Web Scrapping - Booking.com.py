@@ -18,6 +18,7 @@ from bs4 import BeautifulSoup
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 import pandas as pd
+from datetime import date
 
 
 ######################################################
@@ -52,9 +53,19 @@ ActionChains(driver).click(driver.find_element(By.ID,'onetrust-accept-btn-handle
 ##############################################
 
 ### For the current project we are manually selecting date (11/01/2023)for scrapping the data
-####Automate the date selection process
 ActionChains(driver).click(driver.find_element(By.CSS_SELECTOR,'#frm > div.xp__fieldset.js--sb-fieldset.accommodation > div.xp__dates.xp__group > div.xp__dates-inner > div:nth-child(2) > div > div > div > div > span')).perform()
 ActionChains(driver).click(driver.find_element(By.CSS_SELECTOR,'#frm > div.xp__fieldset.js--sb-fieldset.accommodation > div.xp__dates.xp__group > div.xp-calendar > div > div > div.bui-calendar__content > div:nth-child(1) > table > tbody > tr:nth-child(3) > td.bui-calendar__date.bui-calendar__date--today')).perform()
+
+##############################################
+#### Automated the date selection process ####
+##############################################
+'''
+datewidget = driver.find_element(By.CLASS_NAME,"bui-calendar__dates")
+columns = datewidget.find_elements(By.TAG_NAME,"td")
+rows = datewidget.find_elements(By.TAG_NAME,"tr")
+date_today = int(date.today().strftime("%d")
+ActionChains(driver).click(columns[date_today+1]).perform()
+'''
 
 #   Clicking on search button    #
 ActionChains(driver).click(driver.find_element(By.CSS_SELECTOR,'#frm > div.xp__fieldset.js--sb-fieldset.accommodation > div.xp__button > div.sb-searchbox-submit-col.-submit-button > button > span.js-sb-submit-text')).perform()
@@ -208,8 +219,9 @@ prop_dict  = {
     "price_per_night" :         price_per_night,
     "breakfast_included" :      breakfast_included,
     "free_cancellation_no_prepayment": free_cancellation_no_prepayment
-              }
+}
 
 df = pd.DataFrame(prop_dict)
-df.to_excel(f"{city_name}_properties.xlsx",index = False)
-df.to_csv(f"{city_name}_properties.csv",index = False)
+today = date.today().strftime("%d%m%Y")
+df.to_excel(f"{city_name}_properties - {today}.xlsx",index = False)
+df.to_csv(f"{city_name}_properties - {today}.csv",index = False)
