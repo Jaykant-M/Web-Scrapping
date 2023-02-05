@@ -25,9 +25,8 @@ from datetime import date
 #   Using driver to open url and open booking.com    #
 ######################################################
 
-driver = webdriver.Chrome(ChromeDriverManager().install())
+#driver = webdriver.Chrome(ChromeDriverManager().install())
 url = "https://www.booking.com/"
-
 driver = webdriver.Chrome('C:/Users/jmjay/M2S1/Session - Web scrapping/chromedriver_win32/chromedriver')
 driver.get(url)
 time.sleep(3)
@@ -36,8 +35,8 @@ time.sleep(3)
 ####################################################################################
 #   Find the search box to enter city name - change city name as per requirement   #
 ####################################################################################
-
-element = driver.find_element(By.CSS_SELECTOR,'#ss')
+element = driver.find_element(By.XPATH,"//*[@id='ss']")
+#element = driver.find_element(By.CSS_SELECTOR,'#ss')
 city_name = "paris"
 element.send_keys(city_name)
 
@@ -53,19 +52,20 @@ ActionChains(driver).click(driver.find_element(By.ID,'onetrust-accept-btn-handle
 ##############################################
 
 ### For the current project we are manually selecting date (11/01/2023)for scrapping the data
-ActionChains(driver).click(driver.find_element(By.CSS_SELECTOR,'#frm > div.xp__fieldset.js--sb-fieldset.accommodation > div.xp__dates.xp__group > div.xp__dates-inner > div:nth-child(2) > div > div > div > div > span')).perform()
-ActionChains(driver).click(driver.find_element(By.CSS_SELECTOR,'#frm > div.xp__fieldset.js--sb-fieldset.accommodation > div.xp__dates.xp__group > div.xp-calendar > div > div > div.bui-calendar__content > div:nth-child(1) > table > tbody > tr:nth-child(3) > td.bui-calendar__date.bui-calendar__date--today')).perform()
+#ActionChains(driver).click(driver.find_element(By.CSS_SELECTOR,'#frm > div.xp__fieldset.js--sb-fieldset.accommodation > div.xp__dates.xp__group > div.xp__dates-inner > div:nth-child(2) > div > div > div > div > span')).perform()
+#ActionChains(driver).click(driver.find_element(By.CSS_SELECTOR,'#frm > div.xp__fieldset.js--sb-fieldset.accommodation > div.xp__dates.xp__group > div.xp-calendar > div > div > div.bui-calendar__content > div:nth-child(1) > table > tbody > tr:nth-child(3) > td.bui-calendar__date.bui-calendar__date--today')).perform()
 
 ##############################################
 #### Automated the date selection process ####
 ##############################################
-'''
+ActionChains(driver).click(driver.find_element(By.CSS_SELECTOR,'#frm > div.xp__fieldset.js--sb-fieldset.accommodation > div.xp__dates.xp__group > div.xp__dates-inner > div:nth-child(2) > div > div > div > div > span')).perform()
+
 datewidget = driver.find_element(By.CLASS_NAME,"bui-calendar__dates")
 columns = datewidget.find_elements(By.TAG_NAME,"td")
 rows = datewidget.find_elements(By.TAG_NAME,"tr")
 date_today = int(date.today().strftime("%d")
 ActionChains(driver).click(columns[date_today+1]).perform()
-'''
+
 
 #   Clicking on search button    #
 ActionChains(driver).click(driver.find_element(By.CSS_SELECTOR,'#frm > div.xp__fieldset.js--sb-fieldset.accommodation > div.xp__button > div.sb-searchbox-submit-col.-submit-button > button > span.js-sb-submit-text')).perform()
