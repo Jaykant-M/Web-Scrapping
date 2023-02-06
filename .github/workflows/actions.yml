@@ -2,7 +2,7 @@ name: run main.py
 
 on:
   schedule:
-    - cron: '0 */24 * * *' # runs every 24 hours
+    - cron: '0 */1 * * *' # runs every 24 hours
 
 jobs:
   build:
@@ -25,6 +25,14 @@ jobs:
       - name: execute py script # run main.py
         #env:
           #SOME_SECRET: ${{ secrets.SOME_SECRET }}
+        run: python main.py
+        
+      - name: On failure execution
+        if: ${{ failure() }}
+        run: python main.py
+        
+      - name: On failure execution - 2
+        if: ${{ failure() }}
         run: python main.py
           
       - name: commit files
