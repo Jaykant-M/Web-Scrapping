@@ -97,7 +97,7 @@ free_cancellation_no_prepayment = []
 
 
 content = driver.page_source        #download and interpret the html code
-soup = BeautifulSoup(content) 
+soup = BeautifulSoup(content,features="lxml") 
 
 # Getting total number of pages for the available properties
 total_pages = int(soup.findAll('button',attrs={"class":"fc63351294 f9c5690c58"})[-1].get_text())
@@ -108,7 +108,7 @@ total_pages = int(soup.findAll('button',attrs={"class":"fc63351294 f9c5690c58"})
 
 for x in range(3):
     content = driver.page_source        #download and interpret the html code
-    soup = BeautifulSoup(content)       #give the parsed code to beautifulsoup
+    soup = BeautifulSoup(content,features="lxml")       #give the parsed code to beautifulsoup
     
     #Listing all the properties
     props = soup.findAll("div",attrs = {"class":"a826ba81c4 fe821aea6c fa2f36ad22 afd256fc79 d08f526e0d ed11e24d01 ef9845d4b3 da89aeb942"})
@@ -228,3 +228,4 @@ df = pd.DataFrame(prop_dict)
 today = date.today().strftime("%d%m%Y")
 df.to_excel(f"{city_name}_properties - {today}.xlsx",index = False)
 #df.to_csv(f"{city_name}_properties - {today}.csv",index = False)
+
